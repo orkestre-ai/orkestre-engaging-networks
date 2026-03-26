@@ -1,0 +1,23 @@
+{
+  "name": "orkestre-engaging-networks",
+  "owner": {
+    "name": "Orkestre AI"
+  },
+  "metadata": {
+    "description": "Claude Code skills for Engaging Networks API integrations",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "ork-engaging-networks",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/engaging-networks-api"
+      ],
+      "description": "Skills for building, debugging, and deploying Engaging Networks REST API integrations",
+      "version": "1.0.0",
+      "category": "development"
+    }
+  ]
+}
