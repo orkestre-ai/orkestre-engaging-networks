@@ -1,6 +1,6 @@
 # Engaging Networks REST API Skill
 
-A Claude Code skill that guides Claude through building, debugging, optimizing, and deploying integrations with the Engaging Networks REST API v6.0.0 for nonprofit fundraising data access.
+An agent skill that guides AI coding assistants through building, debugging, optimizing, and deploying integrations with the Engaging Networks REST API v6.0.0 for nonprofit fundraising data access.
 
 **Regions:** US | US2 | CA | EU | AU
 **Languages:** TypeScript, Python
@@ -10,7 +10,7 @@ A Claude Code skill that guides Claude through building, debugging, optimizing, 
 
 ## What This Skill Does
 
-When you ask Claude to work with the Engaging Networks API, this skill provides structured workflows, verified endpoint references, type-safe client patterns, and safety guardrails for write operations.
+When you ask your agent to work with the Engaging Networks API, this skill provides structured workflows, verified endpoint references, type-safe client patterns, and safety guardrails for write operations.
 
 | Service Group | Description | Endpoints |
 |---------------|-------------|-----------|
@@ -27,20 +27,20 @@ When you ask Claude to work with the Engaging Networks API, this skill provides 
 
 ## Installation
 
-**From the Orkestre marketplace:**
+### Claude Code
 
 ```
-/plugin marketplace add grassriots/orkestre-engaging-networks
+/plugin marketplace add orkestre-ai/orkestre-engaging-networks
 /plugin install ork-engaging-networks@orkestre-engaging-networks
 ```
 
-**Auto-install in your project** (add to `.claude/settings.json`):
+**Auto-install** (add to `.claude/settings.json`):
 
 ```json
 {
   "extraKnownMarketplaces": {
     "orkestre-engaging-networks": {
-      "source": { "source": "github", "repo": "grassriots/orkestre-engaging-networks" }
+      "source": { "source": "github", "repo": "orkestre-ai/orkestre-engaging-networks" }
     }
   },
   "enabledPlugins": {
@@ -49,11 +49,15 @@ When you ask Claude to work with the Engaging Networks API, this skill provides 
 }
 ```
 
-**Local testing:**
+### OpenAI Codex CLI
 
 ```
-/plugin marketplace add /path/to/orkestre-engaging-networks
+codex skills add orkestre-ai/orkestre-engaging-networks
 ```
+
+### Other Tools
+
+This skill follows the [Agent Skills specification](https://agentskills.io/specification). Any compatible tool can consume it from the `skills/` directory.
 
 ---
 
@@ -74,7 +78,7 @@ When you ask Claude to work with the Engaging Networks API, this skill provides 
 
 ## Quick Start
 
-Ask Claude anything related to the Engaging Networks API and the skill will activate:
+Ask your agent anything related to the Engaging Networks API and the skill will activate:
 
 ```
 "Build a TypeScript integration with Engaging Networks to sync our donor data"
@@ -193,7 +197,7 @@ Every endpoint in `references/endpoints.md` is tagged **READ**, **WRITE**, or **
 
 ### Layer 2: Confirmation Gates
 
-The skill instructs Claude to **never execute write or destructive API calls without human approval**. Before any write operation, Claude will:
+The skill instructs your agent to **never execute write or destructive API calls without human approval**. Before any write operation, the agent will:
 
 1. Show you the exact HTTP method, endpoint, and request body
 2. Explain in plain language what the call will do
@@ -271,9 +275,6 @@ engaging-networks-api/
 │   ├── optimize-api-usage.md         # Reduce API calls, implement caching
 │   ├── test-integration.md           # Unit and integration testing
 │   └── deploy-integration.md         # Production deployment (Vercel, Lambda, Docker)
-└── .audit/
-    ├── 2026-03-25-api-verification.md   # Live API test results
-    └── 2026-03-25-subagent-tests.md     # Workflow validation results
 ```
 
 **How progressive disclosure works:**
@@ -292,7 +293,7 @@ This skill has been verified against the live Engaging Networks API and tested w
 
 - **31 read-only endpoints tested** against the CA region
 - **25 passed**, 4 blocked by API User permissions, 3 bugs found and fixed
-- Tested with real Oxfam Canada account data (239 donation pages, 48K+ supporters)
+- Tested with real account data (239 donation pages, 48K+ supporters)
 
 ### Subagent Workflow Tests (2026-03-25)
 
@@ -314,8 +315,6 @@ This skill has been verified against the live Engaging Networks API and tested w
 - Transaction type codes documented (list `type` vs detail `transactionType`)
 - Recurring transaction paths fixed (`/transactions/recurring`)
 - Search filter syntax clarified (uses field `property` tags, not display names)
-
-Full reports: `.audit/2026-03-25-api-verification.md` and `.audit/2026-03-25-subagent-tests.md`
 
 ---
 
@@ -343,7 +342,7 @@ Check your EN admin panel URL. If it starts with `ca.engagingnetworks.app`, use 
 
 ### Debug workflow
 
-Ask Claude: *"My EN API integration isn't working, help me debug it"* -- the skill routes to `workflows/debug-api-issues.md` which generates a diagnostic script checking token, IP, connectivity, and permissions.
+Ask your agent: *"My EN API integration isn't working, help me debug it"* -- the skill routes to `workflows/debug-api-issues.md` which generates a diagnostic script checking token, IP, connectivity, and permissions.
 
 ---
 
@@ -360,4 +359,4 @@ Ask Claude: *"My EN API integration isn't working, help me debug it"* -- the ski
 
 ## License
 
-Part of the [Orkestre Plugins](https://github.com/grassriots/orkestre-engaging-networks) marketplace. See repository for license details.
+Part of the [Orkestre Plugins](https://github.com/orkestre-ai/orkestre-engaging-networks) marketplace. MIT License.

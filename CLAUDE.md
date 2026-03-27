@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Purpose
 
-This is the **public** Claude Code plugin marketplace for distributing production-ready Engaging Networks API integration skills.
+This is the **public** Agent Skills marketplace for distributing production-ready Engaging Networks API integration skills. Compatible with Claude Code, OpenAI Codex CLI, and other Agent Skills-compatible tools.
 
 ## Repository Structure
 
@@ -12,11 +12,13 @@ This marketplace uses `strict: false` mode - the marketplace entry in `marketpla
 
 ```
 .claude-plugin/
-  marketplace.json    # Main marketplace manifest (required) — name: orkestre-engaging-networks
-.references/
-  engaging-networks-rest-api.json  # OpenAPI 3.1.0 spec for EN REST API v6.0.0
+  marketplace.json    # Claude Code marketplace manifest
+.codex-plugin/
+  plugin.json         # Codex CLI plugin manifest
 skills/               # Skills distributed via the marketplace
   engaging-networks-api/       # REST API integration (session-based auth, 44 endpoints)
+LICENSE               # MIT
+CONTRIBUTING.md       # Contribution guidelines
 ```
 
 ## Skills

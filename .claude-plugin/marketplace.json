@@ -4,7 +4,7 @@
     "name": "Orkestre AI"
   },
   "metadata": {
-    "description": "Claude Code skills for Engaging Networks API integrations",
+    "description": "Agent skills for Engaging Networks API integrations",
     "version": "1.0.0"
   },
   "plugins": [

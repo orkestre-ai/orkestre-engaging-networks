@@ -1,0 +1,10 @@
+{
+  "name": "orkestre-engaging-networks",
+  "version": "1.0.0",
+  "description": "Agent skills for Engaging Networks API integrations",
+  "author": "Orkestre AI",
+  "license": "MIT",
+  "skills": [
+    "./skills/engaging-networks-api"
+  ]
+}

@@ -1,6 +1,19 @@
+```
+    .::::            .::                        .::
+  .::    .::         .::                        .::
+.::        .::.: .:::.::  .::   .::     .:::: .:.: .:.: .:::   .::
+.::        .:: .::   .:: .::  .:   .:: .::      .::   .::    .:   .::
+.::        .:: .::   .:.::   .::::: .::  .:::   .::   .::   .::::: .::
+  .::     .::  .::   .:: .:: .:            .::  .::   .::   .:
+    .::::     .:::   .::  .::  .::::   .:: .::   .:: .:::     .::::
+
+Agent skills for Engaging Networks API integrations.
+Compatible with Claude Code, OpenAI Codex CLI, and any Agent Skills-compatible tool.
+```
+
 # Orkestre Engaging Networks
 
-Claude Code skills for building, debugging, and deploying Engaging Networks API integrations for nonprofit organizations.
+Agent skills for building, debugging, and deploying Engaging Networks API integrations for nonprofit organizations. Compatible with Claude Code, OpenAI Codex CLI, and any tool supporting the [Agent Skills specification](https://agentskills.io/specification).
 
 ## Skills
 
@@ -9,6 +22,8 @@ Claude Code skills for building, debugging, and deploying Engaging Networks API 
 | **engaging-networks-api** | Full REST API integration (44 endpoints, 8 service groups). Session-based auth, TypeScript/Python clients, write safety guardrails, export jobs, marketing automations. |
 
 ## Installation
+
+### Claude Code
 
 ```bash
 # Add the marketplace
@@ -33,6 +48,16 @@ Claude Code skills for building, debugging, and deploying Engaging Networks API 
 }
 ```
 
+### OpenAI Codex CLI
+
+```bash
+codex skills add orkestre-ai/orkestre-engaging-networks
+```
+
+### Other Tools
+
+This repo follows the [Agent Skills specification](https://agentskills.io/specification). Any compatible tool can consume the skills in `skills/`.
+
 ## Prerequisites
 
 - **EN API User token** from EN Admin > Settings > API Users
@@ -41,7 +66,7 @@ Claude Code skills for building, debugging, and deploying Engaging Networks API 
 
 ## Quick Start
 
-Just ask Claude anything about the Engaging Networks API:
+Just ask your AI coding assistant anything about the Engaging Networks API:
 
 - *"Build a TypeScript integration with EN to sync donor data"*
 - *"Add recurring transaction tracking to my EN client"*
@@ -70,7 +95,7 @@ The skill activates automatically based on your request.
 The `engaging-networks-api` skill protects production donor data with a three-layer safety model:
 
 1. **Risk classification** -- every write endpoint is tagged WRITE or DESTRUCTIVE
-2. **Confirmation gates** -- Claude shows you the exact request and waits for approval before any write
+2. **Confirmation gates** -- your agent shows you the exact request and waits for approval before any write
 3. **Dry-run pattern** -- generated code includes `dryRun` option to preview without executing
 
 See `skills/engaging-networks-api/README.md` for full details.
