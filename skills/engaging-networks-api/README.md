@@ -71,7 +71,7 @@ This skill follows the [Agent Skills specification](https://agentskills.io/speci
    ```bash
    # .env
    EN_API_USER_TOKEN=your-uuid-token-here
-   EN_REGION=ca   # us, us2, ca, eu, or au
+   EN_REGION=ca   # us, us2, or ca (EU/AU clients use ca)
    ```
 4. **For TypeScript integrations:** Node.js 18+ and TypeScript 5+
 5. **For Python integrations:** Python 3.8+
@@ -262,8 +262,9 @@ curl -X POST \
 | US | `https://us.engagingnetworks.app/ens/service` |
 | US2 | `https://us2.engagingnetworks.app/ens/service` |
 | CA | `https://ca.engagingnetworks.app/ens/service` |
-| EU | `https://eu.engagingnetworks.app/ens/service` |
-| AU | `https://au.engagingnetworks.app/ens/service` |
+
+
+EU and AU clients currently use the CA servers (`ca.engagingnetworks.app`). There are no separate `eu.` or `au.` endpoints at this time.
 
 Card payment processing uses the `-vault` host variant (e.g., `ca-vault.engagingnetworks.app`).
 

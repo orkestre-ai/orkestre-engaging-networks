@@ -58,7 +58,8 @@ npm install @sentry/node
 
 **src/types/en-api.ts:**
 ```typescript
-export type Region = 'us' | 'ca' | 'eu' | 'au';
+// EU and AU clients currently use the CA servers
+export type Region = 'us' | 'us2' | 'ca';
 
 export type PageType = 'donation' | 'advocacy' | 'event' | 'survey';
 
@@ -295,11 +296,11 @@ import type {
   GetPagesParams,
 } from '../types/en-api';
 
+// EU and AU clients currently use the CA servers
 const REGION_BASE_URLS: Record<Region, string> = {
   us: 'https://us.engagingnetworks.app/ens/service',
+  us2: 'https://us2.engagingnetworks.app/ens/service',
   ca: 'https://ca.engagingnetworks.app/ens/service',
-  eu: 'https://eu.engagingnetworks.app/ens/service',
-  au: 'https://au.engagingnetworks.app/ens/service',
 };
 
 export class ENClient {

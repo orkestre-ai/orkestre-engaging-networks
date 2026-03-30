@@ -99,7 +99,7 @@ Create `.env` file:
 ```bash
 # Engaging Networks API Configuration
 EN_API_TOKEN=your_token_here
-EN_REGION=us  # us, us2, ca, eu, or au
+EN_REGION=us  # us, us2, or ca (EU/AU clients use ca)
 ```
 
 **Security checklist:**
@@ -116,12 +116,11 @@ EN_REGION=us  # us, us2, ca, eu, or au
 ```typescript
 import axios, { AxiosInstance, AxiosError } from 'axios';
 
+// EU and AU clients currently use the CA servers
 const REGION_BASE_URLS = {
   us: 'https://us.engagingnetworks.app/ens/service',
   us2: 'https://us2.engagingnetworks.app/ens/service',
   ca: 'https://ca.engagingnetworks.app/ens/service',
-  eu: 'https://eu.engagingnetworks.app/ens/service',
-  au: 'https://au.engagingnetworks.app/ens/service',
 } as const;
 
 type Region = keyof typeof REGION_BASE_URLS;
@@ -354,12 +353,11 @@ import requests
 from requests.exceptions import RequestException
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 
+# EU and AU clients currently use the CA servers
 REGION_BASE_URLS = {
     'us': 'https://us.engagingnetworks.app/ens/service',
     'us2': 'https://us2.engagingnetworks.app/ens/service',
     'ca': 'https://ca.engagingnetworks.app/ens/service',
-    'eu': 'https://eu.engagingnetworks.app/ens/service',
-    'au': 'https://au.engagingnetworks.app/ens/service',
 }
 
 @dataclass

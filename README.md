@@ -62,7 +62,7 @@ This repo follows the [Agent Skills specification](https://agentskills.io/specif
 
 - **EN API User token** from EN Admin > Settings > API Users
 - **IP whitelisting** configured for your server
-- `.env` with `EN_API_USER_TOKEN` and `EN_REGION` (us, us2, ca, eu, or au)
+- `.env` with `EN_API_USER_TOKEN` and `EN_REGION` (us, us2, or ca — EU/AU clients use ca)
 
 ## Quick Start
 
