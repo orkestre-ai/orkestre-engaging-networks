@@ -84,6 +84,18 @@ Check your EN admin panel URL to determine your region.
 - 404 (not found) - resource doesn't exist
 </error_handling_overview>
 
+<data_privacy>
+**This skill is a development assistant.** Its primary purpose is helping you write, debug, and deploy code that uses the EN API — not acting as a live data operations proxy.
+
+**Recommended: use a sandbox or test EN account.** All workflows work without real donor data.
+
+**Data flow awareness:** When the agent executes EN API calls, response data is processed by the model provider's infrastructure (Anthropic, OpenAI, etc.). Any supporter PII in API responses — names, emails, addresses, donation history — is transferred to a third party during inference. Read operations expose PII even though they don't modify data.
+
+**Payment data restriction:** Never route credit card data through the agent. The `-vault` host variant for payment processing must only be used in direct server-to-EN connections in application code, not through agent sessions.
+
+**If connecting to a production account:** query only what you need, avoid bulk supporter retrieval through the agent, inform your organization's data protection officer, and clear conversation history after working with live donor data. See SECURITY.md in the repository root for full guidance.
+</data_privacy>
+
 <write_safety>
 **The EN API has endpoints that modify production nonprofit donor data. Treat write operations with the same care as database migrations.**
 
@@ -109,6 +121,11 @@ Check your EN admin panel URL to determine your region.
 </essential_principles>
 
 <intake>
+**Before we begin:** Are you working with a **sandbox/test account** or a **production account**?
+
+- **Sandbox (recommended):** Great — we can work freely. All workflows are fully supported.
+- **Production:** We can proceed, but I'll prioritize schema-only endpoints and avoid bulk data queries. Read SECURITY.md for what production use means for your data. I'll remind you when an operation would pull supporter PII into this session.
+
 What would you like to do?
 
 1. Build a new EN API integration
@@ -174,7 +191,7 @@ All in `workflows/`:
 </workflows_index>
 
 <verification_loop>
-Always verify your EN API integration:
+Always verify your EN API integration. These checks use **schema and metadata endpoints only** (no supporter PII):
 
 ```bash
 # 1. Can we authenticate?
@@ -185,15 +202,15 @@ SESSION_TOKEN=$(curl -s -X POST \
 
 echo "Session token obtained: ${SESSION_TOKEN:0:10}..."
 
-# 2. List pages (use session token in ens-auth-token header)
+# 2. List pages (metadata only, no supporter PII)
 curl -H "ens-auth-token: $SESSION_TOKEN" \
   -H "Accept: application/json" \
   "https://ca.engagingnetworks.app/ens/service/page?type=dc"
 
-# 3. Query supporters (latest modified, 1 row)
+# 3. List supporter fields (schema only, no PII)
 curl -H "ens-auth-token: $SESSION_TOKEN" \
   -H "Accept: application/json" \
-  "https://ca.engagingnetworks.app/ens/service/supporter/query?type=latestModified&daysBack=1&rows=1"
+  "https://ca.engagingnetworks.app/ens/service/supporter/fields"
 
 # 4. Do types compile? (TypeScript)
 npm run typecheck
@@ -205,7 +222,7 @@ npm test
 **Report to user:**
 - "Authenticated with EN REST API (region: CA)"
 - "Session token obtained (expires in 60 minutes)"
-- "Listed pages and queried supporters using session token"
+- "Listed pages and supporter field schema"
 - "Tests pass: 12/12"
 - "Ready for you to test with your EN account"
 </verification_loop>

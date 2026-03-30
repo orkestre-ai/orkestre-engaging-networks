@@ -403,6 +403,12 @@ POST /authenticate returns 401 even with valid token
 → Check if your IP address is whitelisted for the API User
 ```
 </ip_whitelisting>
+
+<vault_restriction>
+**Payment Processing (`-vault` host) — Do Not Use Through AI Agent:**
+
+The EN API uses a `-vault` host variant (e.g., `ca-vault.engagingnetworks.app`) for processing credit card payments. **Never route payment card data through an AI agent session.** Credit card numbers, CVVs, and expiration dates in an agent's context window create PCI DSS compliance exposure. Process payments through direct server-to-EN connections in your application code only.
+</vault_restriction>
 </security_best_practices>
 
 <authentication_errors>

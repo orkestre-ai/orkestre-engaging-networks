@@ -66,7 +66,7 @@ This repo follows the [Agent Skills specification](https://agentskills.io/specif
 
 ## Quick Start
 
-Just ask your AI coding assistant anything about the Engaging Networks API:
+Connect to a **sandbox or test EN account** for development (recommended). Just ask your AI coding assistant anything about the Engaging Networks API:
 
 - *"Build a TypeScript integration with EN to sync donor data"*
 - *"Add recurring transaction tracking to my EN client"*
@@ -89,6 +89,14 @@ The skill activates automatically based on your request.
 | Marketing Automation | 4 | Automated journeys and stats |
 
 **44 endpoints** across 8 service groups, each classified as READ, WRITE, or DESTRUCTIVE with appropriate safety guardrails.
+
+## Data Privacy & Intended Use
+
+This skill is a **development assistant** — it helps you write code that integrates with the EN API. It is not designed as a live data operations proxy.
+
+**When your agent queries the EN API, response data is processed by the model provider's infrastructure** (Anthropic for Claude, OpenAI for Codex). This means supporter PII in API responses is transferred to a third party during inference. We recommend using a **sandbox or test EN account** for all development work.
+
+If you connect to a production account, read **[SECURITY.md](SECURITY.md)** first — it covers data flow, GDPR considerations, production procedures, and payment data restrictions.
 
 ## Write Safety
 

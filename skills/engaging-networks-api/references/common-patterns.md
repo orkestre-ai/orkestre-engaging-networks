@@ -1,5 +1,7 @@
 <overview>
 Common integration patterns and use cases for Engaging Networks API. Real-world examples using verified endpoints for supporter management, transactions, export jobs, page processing, and reporting.
+
+**These patterns are for your application code** — build and test them against a sandbox or test EN account, then deploy as server-side applications. Patterns that retrieve supporter data (daily sync, donor roll, supporter CRUD, polling) pull PII. When executed through an AI agent, that PII is processed by the model provider's infrastructure. Use the agent to write and refine these patterns, then run them independently.
 </overview>
 
 <daily_sync_pattern>
