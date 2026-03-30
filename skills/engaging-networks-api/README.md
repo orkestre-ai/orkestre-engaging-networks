@@ -10,7 +10,9 @@ An agent skill that guides AI coding assistants through building, debugging, opt
 
 ## What This Skill Does
 
-When you ask your agent to work with the Engaging Networks API, this skill provides structured workflows, verified endpoint references, type-safe client patterns, and safety guardrails for write operations.
+This skill is a **development assistant**. When you ask your agent to work with the Engaging Networks API, it provides structured workflows, verified endpoint references, type-safe client patterns, and safety guardrails — helping you **write code** that integrates with EN, not act as a live data operations proxy.
+
+We recommend using a **sandbox or test EN account** for all development work. See [SECURITY.md](../../SECURITY.md) for full data privacy guidance.
 
 | Service Group | Description | Endpoints |
 |---------------|-------------|-----------|
@@ -187,15 +189,27 @@ The skill uses `GET /supporter/query?type=latestModified&daysBack=7` with pagina
 
 ---
 
-## Security & Write Safety
+## Security, Privacy & Write Safety
 
-This skill implements a three-layer safety model to protect production nonprofit donor data:
+### Data Privacy
 
-### Layer 1: Risk Classification
+When the AI agent executes EN API calls, **response data is processed by the model provider's infrastructure** (Anthropic for Claude, OpenAI for Codex). Supporter PII in API responses — names, emails, addresses, donation history — is transferred to a third party during inference.
+
+**Read operations are the primary privacy surface.** Write operations have approval gates. Reads do not — and they're the ones that pull PII into the model provider's context.
+
+**Recommended:** Use a sandbox or test EN account. All skill workflows work without real donor data. If you connect to production, see [SECURITY.md](../../SECURITY.md) for procedures covering data minimization, DPA requirements, GDPR, and session cleanup.
+
+**Payment data:** The `-vault` host variant for credit card processing must **never** be used through an AI agent session. Process payments through direct server-to-EN connections in your application code only.
+
+### Write Safety
+
+This skill implements a three-layer safety model to protect against unintended data modifications:
+
+#### Layer 1: Risk Classification
 
 Every endpoint in `references/endpoints.md` is tagged **READ**, **WRITE**, or **DESTRUCTIVE**. Write and destructive endpoints include blockquote warnings.
 
-### Layer 2: Confirmation Gates
+#### Layer 2: Confirmation Gates
 
 The skill instructs your agent to **never execute write or destructive API calls without human approval**. Before any write operation, the agent will:
 
@@ -204,7 +218,7 @@ The skill instructs your agent to **never execute write or destructive API calls
 3. For destructive calls, warn that the action is irreversible
 4. Wait for your explicit confirmation
 
-### Layer 3: Dry-Run in Generated Code
+#### Layer 3: Dry-Run in Generated Code
 
 All write methods in generated TypeScript clients include a `dryRun` option:
 

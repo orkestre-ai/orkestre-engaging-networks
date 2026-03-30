@@ -328,6 +328,8 @@ curl -X POST \
 
 > **Requires human approval.** This processes a real credit card payment. Use `demo: true` for testing.
 
+> **Do not use this endpoint through an AI agent session.** Credit card numbers, CVVs, and expiration dates in an agent's context window create PCI DSS compliance exposure. Process payments through direct server-to-EN connections in your application code only. The agent can help you *write* the code; it should not *execute* the payment.
+
 Process a page submission containing credit card data. This endpoint **must** use the `-vault` host variant for PCI-compliant tokenization.
 
 **Host:** `https://{region}-vault.engagingnetworks.app/ens/service`

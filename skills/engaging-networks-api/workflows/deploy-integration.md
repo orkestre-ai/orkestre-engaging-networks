@@ -18,6 +18,13 @@ Verify readiness before deploying:
 - [ ] Token rotation plan in place (every 90 days)
 - [ ] HTTPS only (no HTTP endpoints)
 
+**Data Privacy:**
+- [ ] Payment processing uses direct server-to-EN vault connections (not routed through AI agent)
+- [ ] If AI agent was used with production data during development: conversation history cleared
+- [ ] Organization's data protection officer informed of any third-party data processing (model provider)
+- [ ] Data Processing Agreement in place with model provider if agent accessed production supporter data
+- [ ] Application follows data minimization — queries only the supporter fields needed
+
 **Code Quality:**
 - [ ] All tests pass
 - [ ] Code coverage > 80%
