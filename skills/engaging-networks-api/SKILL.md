@@ -44,8 +44,8 @@ The Engaging Networks REST API provides programmatic access to fundraising pages
 - US: `https://us.engagingnetworks.app/ens/service`
 - US2: `https://us2.engagingnetworks.app/ens/service`
 - CA: `https://ca.engagingnetworks.app/ens/service`
-- EU: `https://eu.engagingnetworks.app/ens/service`
-- AU: `https://au.engagingnetworks.app/ens/service`
+
+**Note:** EU and AU clients currently use the CA servers (`ca.engagingnetworks.app`). There are no separate `eu.` or `au.` endpoints at this time. If your organization was provisioned under an EU or AU label, use the CA base URL.
 
 Check your EN admin panel URL to determine your region.
 </regional_instances>

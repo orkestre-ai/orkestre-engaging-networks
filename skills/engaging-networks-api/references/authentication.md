@@ -166,13 +166,12 @@ class ENAuthenticatedClient {
   private sessionToken: string | null = null;
   private sessionExpiry: number | null = null;
 
-  constructor(region: 'us' | 'us2' | 'ca' | 'eu' | 'au', apiUserToken: string) {
+  constructor(region: 'us' | 'us2' | 'ca', apiUserToken: string) {
+    // EU and AU clients currently use the CA servers
     const baseURLs = {
       us: 'https://us.engagingnetworks.app/ens/service',
       us2: 'https://us2.engagingnetworks.app/ens/service',
       ca: 'https://ca.engagingnetworks.app/ens/service',
-      eu: 'https://eu.engagingnetworks.app/ens/service',
-      au: 'https://au.engagingnetworks.app/ens/service',
     };
     this.baseURL = baseURLs[region];
     this.apiUserToken = apiUserToken;
@@ -240,12 +239,11 @@ import json
 
 class ENAuthenticatedClient:
     def __init__(self, region: str, api_user_token: str):
+        # EU and AU clients currently use the CA servers
         base_urls = {
             'us': 'https://us.engagingnetworks.app/ens/service',
             'us2': 'https://us2.engagingnetworks.app/ens/service',
             'ca': 'https://ca.engagingnetworks.app/ens/service',
-            'eu': 'https://eu.engagingnetworks.app/ens/service',
-            'au': 'https://au.engagingnetworks.app/ens/service',
         }
         self.base_url = base_urls[region]
         self.api_user_token = api_user_token
@@ -660,7 +658,7 @@ const client = new ENClient({
 - [ ] Your IP address is whitelisted (EN Admin → API Users → IP Whitelist)
 - [ ] No extra quotes in .env file (should be: `EN_API_USER_TOKEN=abc123`, not `EN_API_USER_TOKEN="abc123"`)
 - [ ] API User is active (not disabled)
-- [ ] Using correct region (ca/us/eu/au)
+- [ ] Using correct region (us/us2/ca — EU and AU clients use CA)
 
 ### Issue 2: Session token expires quickly
 **Symptom:** Getting 401 errors after some time

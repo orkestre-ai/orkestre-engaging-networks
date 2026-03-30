@@ -69,7 +69,7 @@ Credit card numbers, CVVs, and expiration dates in an agent's context window cre
 
 ## GDPR Considerations
 
-Organizations on the EU region (`eu.engagingnetworks.app`) or processing EU residents' data should assess:
+Organizations processing EU residents' data should assess (note: EU clients currently use the CA servers at `ca.engagingnetworks.app`):
 
 - **Lawful basis**: What is your legal basis for transferring supporter PII to an AI model provider? The original consent for data collection likely does not cover this.
 - **Cross-border transfer**: Anthropic and OpenAI are US-based. Transferring EU supporter data to US infrastructure requires appropriate safeguards (Standard Contractual Clauses or equivalent).
